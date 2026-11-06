@@ -1,0 +1,61 @@
+============================================================
+  S160 QX — TESTE QUANTICO COMPLETO (resultados reais)
+  Gerado em: 2026-11-06 22:05:12 UTC
+  Ambiente: Linux x64 (mesmo codigo C nativo do EXE Windows)
+============================================================
+ 1. [OK ] kernel vetorial == escalar (XOR) — 
+ 2. [OK ] particao estatica contigua — 
+ 3. [OK ] paralelo == sequencial (validacao XOR) — 
+ 4. [OK ] 4096 VPUs executam sem erro — 
+ 5. [OK ] resultado VPU == sequencial — 
+ 6. [OK ] grade QX-SIMD == kernel QX-160 — 
+ 7. [OK ] conv2d motor == ingenua — 
+ 8. [OK ] fabric por tiles == soma full — 
+ 9. [OK ] eviccao L1->L2 contabilizada — 
+10. [OK ] cluster 2 workers == 1 worker — 
+11. [OK ] video tiles: tile==direto e paralelo==seq — 
+12. [OK ] grafico grava->le roundtrip exato — 
+13. [OK ] charts: estatisticas corretas — 
+14. [OK ] QPU bell: H+CNOT entrelaca (so 00 e 11) — 
+15. [OK ] QMRAM: paginas em L0 + classicas assumem ao esgotar — 
+16. [OK ] QPU 0 ms: media de porta < 1 ms (us reais) — 
+SELFTEST 16/16
+tomada_total: True | modo_puro: True
+QMRAM: 2.79 GB | fisica livre agora: 808 MB
+registros: 64 | qubits/registro: 12
+contagens: {'110000000000': 237, '000000000000': 275} | total: 512
+contagens: [('111111111111', 114), ('000000000000', 142)] | total: 256
+contagens: {'110000000000': 491, '000000000000': 533} | total: 1024
+portas: ? | portas/s: 270331
+alloc 16MB -> ok: True | nivel: 0 L0-QUANTICA | pagina no QMRAM: RAM fisica travada (0 ms)
+alloc 4GB (pool ~2.8GB) -> nivel: -2 | aviso: MODO QUANTICO PURO: QMRAM cheia e as memorias classicas estao DESLIGADAS — solte paginas (fabric-drop) ou amplie a tomada (q.memor
+processar ok: True | {"ok": true, "ligado": true, "intensidade": 3, "ciclos": 4, "portas_por_segundo": 186489.46328, "nota": "a QPU esta processando sem parar"}
+liberar ok: True | re-tomar pct100 ok: True
+RELATORIO S160 QX NATIVO — Linux (validacao do mesmo codigo C)
+nucleos=2 workers=2 simd=AVX512F,AVX2,AVX,SSE4_2
+
+[1] kernel escalonamento
+threads=1 tps=31579227 eps=252633814 ganho=1.00
+threads=2 tps=42192955 eps=337543642 ganho=1.34
+[2] vpu blocos/s=2936140 itens/s=751651758 gargalo=0
+[3] conv mpixels/s=1025.9
+[4] video fps=71.20
+[5] fabric hits=24 evicoes=45 movidos=94371840
+provas=16/16
+
+============================================================
+  RESUMO: 12/12 PROVAS PASSARAM
+
+[OK]    selftest local: SELFTEST 16/16 (16 provas, todas aprovadas)
+[OK]    servidor no ar (QPU + QMRAM ativos)
+[OK]    TOMADA TOTAL ativa (pct 100)
+[OK]    MODO QUANTICO PURO (classicas desligadas)
+[OK]    BELL 512 shots: contagens somam 512, 2 resultados (emaranhado)
+[OK]    GHZ 256 shots: contagens somam 256
+[OK]    PROGRAMA custom: 1024 shots executados
+[OK]    q.bench 8192 portas paralelas OK (270331 portas/s)
+[OK]    fabric: pagina em L0-QUANTICA (RAM travada) + 4GB RECUSADO (nivel -2, MODO PURO)
+[OK]    processar intensidade 3 (TURBO) aceito
+[OK]    q.memory: liberar + re-tomar 100% OK (reversivel)
+[OK]    s160_bench completo rodou (relatorio gerado)
+============================================================
